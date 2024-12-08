@@ -88,7 +88,7 @@ public class AppiumUtils {
 	 */
 	public String captureScreenShotInBase64(AppiumDriver driver) {
 		String base64Screenshot = driver.getScreenshotAs(OutputType.BASE64);
-		System.out.println("Base64 Screenshot :" + base64Screenshot);
+		// System.out.println("Base64 Screenshot :" + base64Screenshot);
 		return base64Screenshot;
 	}
 }

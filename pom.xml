@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.TapasMaji</groupId>
@@ -42,6 +39,13 @@
     <artifactId>extentreports</artifactId>
     <version>5.1.2</version>
 	</dependency>
+	
+	<dependency>
+    <groupId>com.browserstack</groupId>
+    <artifactId>browserstack-java-sdk</artifactId>
+    <version>LATEST</version>
+    <scope>compile</scope>
+    </dependency>
   </dependencies>
   
   <profiles>
@@ -57,7 +61,7 @@
 	  <configuration>
 	  <suiteXmlFiles>
 	  <suiteXmlFile>TestNGSuites/testng.xml</suiteXmlFile>
-	  </suiteXmlFiles>
+	  </suiteXmlFiles><argLine>-javaagent:"${com.browserstack:browserstack-java-sdk:jar}"</argLine>
 	  </configuration>
 	</plugin>
 	</plugins>
@@ -77,7 +81,7 @@
 	  <configuration>
 	  <suiteXmlFiles>
 	  <suiteXmlFile>TestNGSuites/testngSmoke.xml</suiteXmlFile>
-	  </suiteXmlFiles>
+	  </suiteXmlFiles><argLine>-javaagent:"${com.browserstack:browserstack-java-sdk:jar}"</argLine>
 	  </configuration>
 	</plugin>
 	</plugins>
@@ -127,6 +131,20 @@
         </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <id>getClasspathFilenames</id>
+            <goals>
+              <goal>properties</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
 
   <reporting>
